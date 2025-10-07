@@ -1,65 +1,57 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>BGM 팝업</title>
-  <style>
-    body {
-      margin:0;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:transparent;
-      overflow:hidden;
-    }
-    #container {
-      position: relative;
-    }
-    #playBtn {
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%, -50%);
-      padding:10px 20px;
-      font-size:16px;
-      border-radius:6px;
-      background:rgba(255,255,255,0.8);
-      cursor:pointer;
-      border:none;
-    }
-    img {
-      display:block;
-      max-width:100%;
-      height:auto;
-    }
-  </style>
+<meta charset="utf-8">
+<title>BGM 팝업</title>
+<style>
+body {
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:transparent;
+}
+#container {
+  position: relative;
+}
+#playBtn {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:10px 20px;
+  font-size:16px;
+  border-radius:6px;
+  background:rgba(255,255,255,0.8);
+  cursor:pointer;
+  border:none;
+}
+img {
+  display:block;
+  max-width:100%;
+  height:auto;
+}
+</style>
 </head>
 <body>
-  <div id="container">
-    <img id="popupImage" src="https://i.imgur.com/xXqzexN.png" alt="BGM 이미지">
-    <button id="playBtn">🎵 재생</button>
-  </div>
+<div id="container">
+  <img id="popupImage" src="https://i.imgur.com/xXqzexN.png" alt="BGM 이미지" width="400">
+  <button id="playBtn">🎵 재생</button>
+</div>
 
-  <audio id="bgAudio" loop>
-    <source src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3" type="audio/mp3">
-  </audio>
+<audio id="bgAudio" loop>
+  <source src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3" type="audio/mp3">
+</audio>
 
-  <script>
-    const audio = document.getElementById('bgAudio');
-    const btn = document.getElementById('playBtn');
-    const img = document.getElementById('popupImage');
+<script>
+const audio = document.getElementById('bgAudio');
+const btn = document.getElementById('playBtn');
 
-    // 이미지 로드 후 팝업 크기 맞추기
-    img.onload = function() {
-      const width = img.naturalWidth;
-      const height = img.naturalHeight;
-      window.resizeTo(width + 20, height + 20); // +20 for padding/borders
-    }
-
-    btn.addEventListener('click', () => {
-      audio.play();
-      btn.style.display = 'none';
-    });
-  </script>
+// 버튼 클릭 시 음악 재생
+btn.addEventListener('click', () => {
+  audio.play().catch(e => console.log('Autoplay blocked:', e));
+  btn.style.display = 'none';
+});
+</script>
 </body>
 </html>
