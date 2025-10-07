@@ -1,63 +1,23 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <title>Site BGM</title>
+  <meta charset="utf-8">
+  <title>팝업 BGM</title>
   <style>
     body {
       margin: 0;
       background: transparent;
-      font-family: Arial, sans-serif;
       display: flex;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-    }
-    #controls {
-      display: flex;
       align-items: center;
-      gap: 10px;
-    }
-    button {
-      padding: 6px 12px;
-      border-radius: 6px;
-      border: 1px solid rgba(0,0,0,.1);
-      cursor: pointer;
-      font-size: 14px;
+      height: 100vh;
     }
   </style>
 </head>
 <body>
-  <div id="controls">
-    <button id="playBtn">▶ 재생</button>
-    <button id="pauseBtn" style="display:none">⏸ 일시정지</button>
-  </div>
-
-  <audio id="bgm" 
-         src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3" 
-         loop preload="auto">
+  <audio autoplay loop controls style="width:100%;">
+    <source src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3" type="audio/mp3">
+    브라우저가 audio 태그를 지원하지 않습니다.
   </audio>
-
-  <script>
-    const audio = document.getElementById('bgm');
-    const playBtn = document.getElementById('playBtn');
-    const pauseBtn = document.getElementById('pauseBtn');
-
-    playBtn.addEventListener('click', async () => {
-      try {
-        await audio.play();
-        playBtn.style.display = 'none';
-        pauseBtn.style.display = '';
-      } catch(e) {
-        console.error(e);
-      }
-    });
-
-    pauseBtn.addEventListener('click', () => {
-      audio.pause();
-      playBtn.style.display = '';
-      pauseBtn.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
