@@ -6,19 +6,60 @@
   <style>
     body {
       margin:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
       background:transparent;
       overflow:hidden;
-      width:0;
-      height:0;
     }
-    audio {
-      display:none; /* 화면에 플레이어 숨김 */
+    #container {
+      position: relative;
+    }
+    #playBtn {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      padding:10px 20px;
+      font-size:16px;
+      border-radius:6px;
+      background:rgba(255,255,255,0.8);
+      cursor:pointer;
+      border:none;
+    }
+    img {
+      display:block;
+      max-width:100%;
+      height:auto;
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
+  <div id="container">
+    <img id="popupImage" src="https://i.imgur.com/xXqzexN.png" alt="BGM 이미지">
+    <button id="playBtn">🎵 재생</button>
+  </div>
+
+  <audio id="bgAudio" loop>
     <source src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3" type="audio/mp3">
   </audio>
+
+  <script>
+    const audio = document.getElementById('bgAudio');
+    const btn = document.getElementById('playBtn');
+    const img = document.getElementById('popupImage');
+
+    // 이미지 로드 후 팝업 크기 맞추기
+    img.onload = function() {
+      const width = img.naturalWidth;
+      const height = img.naturalHeight;
+      window.resizeTo(width + 20, height + 20); // +20 for padding/borders
+    }
+
+    btn.addEventListener('click', () => {
+      audio.play();
+      btn.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
