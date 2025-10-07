@@ -2,22 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>팝업 BGM</title>
+  <title>BGM 팝업</title>
   <style>
-    body {
-      margin: 0;
-      background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+    body { margin:0; background:transparent; overflow:hidden; width:0; height:0; }
+    audio { display:none; } /* 화면에 안 보이게 */
   </style>
 </head>
 <body>
-  <audio autoplay loop controls style="width:100%;">
+  <audio autoplay loop>
     <source src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3" type="audio/mp3">
-    브라우저가 audio 태그를 지원하지 않습니다.
   </audio>
 </body>
 </html>
