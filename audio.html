@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <title>Site BGM</title>
   <style>
-    /* 최소 스타일 */
     body {
       margin: 0;
       background: transparent;
@@ -14,8 +13,13 @@
       justify-content: center;
       height: 100vh;
     }
+    #controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     button {
-      padding: 8px 12px;
+      padding: 6px 12px;
       border-radius: 6px;
       border: 1px solid rgba(0,0,0,.1);
       cursor: pointer;
@@ -24,27 +28,35 @@
   </style>
 </head>
 <body>
-  <!-- 클릭 버튼: 자동재생 차단 대응 -->
-  <button id="playBtn">▶ 재생</button>
+  <div id="controls">
+    <button id="playBtn">▶ 재생</button>
+    <button id="pauseBtn" style="display:none">⏸ 일시정지</button>
+  </div>
 
   <audio id="bgm" 
          src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3" 
-         loop 
-         preload="auto">
+         loop preload="auto">
   </audio>
 
   <script>
     const audio = document.getElementById('bgm');
     const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
 
     playBtn.addEventListener('click', async () => {
       try {
         await audio.play();
-        playBtn.style.display = 'none'; // 버튼 숨김
-      } catch(err) {
-        alert('재생 실패. 브라우저에서 소리 자동재생을 허용해주세요.');
-        console.error(err);
+        playBtn.style.display = 'none';
+        pauseBtn.style.display = '';
+      } catch(e) {
+        console.error(e);
       }
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      audio.pause();
+      playBtn.style.display = '';
+      pauseBtn.style.display = 'none';
     });
   </script>
 </body>
