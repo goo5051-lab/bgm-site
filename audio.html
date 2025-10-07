@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Site BGM</title>
+</head>
+<body>
+  <audio id="bgm"
+         src="https://static.wixstatic.com/mp3/0c6c2b_47136efefe9344918e585b0df5a434e0.mp3"
+         autoplay loop></audio>
+
+  <script>
+    // 사용자가 클릭 시 재생 (브라우저 자동재생 방지 회피)
+    document.body.addEventListener('click', () => {
+      document.getElementById('bgm').play();
+    });
+  </script>
+</body>
+</html>
